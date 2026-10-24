@@ -2,4 +2,22 @@
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dual Workout · Sistema interno</title><meta name="robots" content="noindex">
 <style>body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0f0f10;color:#f2f2f2;display:flex;min-height:100vh;align-items:center;justify-content:center}main{max-width:560px;padding:32px 20px}h1{margin:0 0 6px;font-size:28px;border-left:6px solid #F00123;padding-left:12px}p{color:#bdbdbd;line-height:1.5}a{color:#f2f2f2}</style></head>
-<body><main><h1>Dual Workout</h1><p>Marca própria · Grupo Dual</p><p>Página de retorno do sistema interno de pedidos, estoque e notas fiscais desta loja. Não é uma loja on-line.</p><p><a href="../">← Todas as lojas</a></p></main></body></html>
+<body><main>
+<section id="codigo" hidden style="border:1px solid #3b82f6;border-radius:10px;padding:18px 16px;margin:0 0 32px;background:#111827">
+<h1 style="font-size:20px">Autorização recebida</h1>
+<p id="origem" style="margin:4px 0 12px"></p>
+<p style="margin:0 0 8px">Copie o código abaixo e cole no terminal, onde o programa está esperando:</p>
+<input id="valor" readonly style="width:100%;box-sizing:border-box;font:15px ui-monospace,Consolas,monospace;padding:10px;border-radius:6px;border:1px solid #374151;background:#0b0b0c;color:#f2f2f2">
+<button id="copiar" style="margin-top:10px;padding:10px 16px;border:0;border-radius:6px;background:#3b82f6;color:#fff;font-size:15px;cursor:pointer">Copiar código</button>
+<p style="font-size:13px;margin:12px 0 0">O código vale poucos minutos e só funciona uma vez. Se expirar, rode a autorização de novo.</p>
+</section>
+<script>
+(function(){var q=new URLSearchParams(location.search),c=q.get("code");if(!c)return;
+var s=document.getElementById("codigo");s.hidden=false;document.getElementById("valor").value=c;
+var o=[];if(q.get("state"))o.push("Loja: "+q.get("state"));if(q.get("shop_id"))o.push("Shop ID: "+q.get("shop_id"));
+document.getElementById("origem").textContent=o.join(" · ");
+document.getElementById("copiar").onclick=function(){var i=document.getElementById("valor");i.select();
+(navigator.clipboard?navigator.clipboard.writeText(c):Promise.reject()).catch(function(){document.execCommand("copy")});this.textContent="Copiado ✓";};
+history.replaceState(null,"",location.pathname);})();
+</script>
+<h1>Dual Workout</h1><p>Marca própria · Grupo Dual</p><p>Página de retorno do sistema interno de pedidos, estoque e notas fiscais desta loja. Não é uma loja on-line.</p><p><a href="../">← Todas as lojas</a></p></main></body></html>
